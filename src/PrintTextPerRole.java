@@ -1,35 +1,25 @@
 public class PrintTextPerRole {
     public static void main(String[] args) {
-        String[] roles = {
-                "Городничий",
-                "Аммос Федорович",
-                "Артемий Филиппович",
-                "Лука Лукич"
-        };
-
+        String[] roles = {"Городничи", "Лука Лукич", "Аммос Федорович"};
         String[] textLines = {
-                "Городничий: Я прошу заметить, что не все из нас могут быть виновными.",
-                "Аммос Федорович: Все могут быть виновными.",
-                "Городничий: Но не все из нас могут быть виновными.",
-                "Артемий Филиппович: Я согласен с городничим.",
-                "Лука Лукич: И я согласен с городничим."
+                "Городничи: Привет!",
+                "Аммос Федорович: Привет, Городничи.",
+                "Лука Лукич: Здравствуйте.",
+                "Лука Лукич: Как дела?",
+                "Городничи: Нормально. Как у вас?",
+                "Аммос Федорович: Всё отлично."
         };
-
-        String result = printTextPerRole(roles, textLines);
-        System.out.println(result);
+        System.out.println(printTextPerRole(roles, textLines));
     }
+
     public static String printTextPerRole(String[] roles, String[] textLines) {
         StringBuilder result = new StringBuilder();
 
-        for (int i = 0; i < roles.length; i++) {
-            String role = roles[i];
+        for (String role : roles) {
             result.append(role).append(":\n");
-
-            for (int j = 0; j < textLines.length; j++) {
-                String textLine = textLines[j];
-
-                if (textLine.startsWith(role + ":")) {
-                    result.append(j + 1).append(")").append(textLine.substring(role.length() + 1)).append("\n");
+            for (int i = 0; i < textLines.length; i++) {
+                if (textLines[i].startsWith(role + ":")) {
+                    result.append((i + 1) + ") " + textLines[i].substring(role.length() + 1) + "\n");
                 }
             }
             result.append("\n");
