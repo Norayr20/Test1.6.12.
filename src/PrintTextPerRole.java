@@ -1,5 +1,5 @@
 public class PrintTextPerRole {
-    public static void main(String[] args) {
+    	public static void main(String[] args) {
         String[] roles = {"Городничи", "Лука Лукич", "Аммос Федорович"};
         String[] textLines = {
                 "Городничи: Привет!",
