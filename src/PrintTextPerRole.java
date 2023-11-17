@@ -1,5 +1,7 @@
+import java.util.HashMap;
+
 public class PrintTextPerRole {
-    	public static void main(String[] args) {
+    public static void main(String[] args) {
         String[] roles = {"Городничи", "Лука Лукич", "Аммос Федорович"};
         String[] textLines = {
                 "Городничи: Привет!",
@@ -13,16 +15,23 @@ public class PrintTextPerRole {
     }
 
     public static String printTextPerRole(String[] roles, String[] textLines) {
-        StringBuilder result = new StringBuilder();
+        HashMap<String, StringBuilder> roleMap = new HashMap<>();
 
         for (String role : roles) {
-            result.append(role).append(":\n");
-            for (int i = 0; i < textLines.length; i++) {
-                if (textLines[i].startsWith(role + ":")) {
-                    result.append((i + 1) + ") " + textLines[i].substring(role.length() + 1) + "\n");
+            roleMap.put(role, new StringBuilder());
+        }
+        for (int i = 0; i < textLines.length; i++) {
+            String line = textLines[i];
+            for (String role : roles) {
+                if (line.startsWith(role + ":")) {
+                    StringBuilder roleText = roleMap.get(role);
+                    roleText.append((i + 1) + ") " + line.substring(role.length() + 1) + "\n");
                 }
             }
-            result.append("\n");
+        }
+        StringBuilder result = new StringBuilder();
+        for (String role : roles) {
+            result.append(role + ":\n" + roleMap.get(role) + "\n\n");
         }
 
         return result.toString();
